@@ -17,7 +17,7 @@ public class Main {
 			System.out.println( "6. Задача 6" );
 			System.out.println( "7. Задача 7" );
 			System.out.println( "8. Выход" );
-			System.out.println( "Выберите пункт меню (1..8)" );
+			System.out.println( "Выберите пункт меню (1...8)" );
 			int c = Scanner.nextInt();
 			switch ( c ) {
 				case 1:
@@ -142,7 +142,9 @@ class My_Class {
 	}
 
 	static void task_4 () {
-		//
+		String a = scanner.nextLine();
+		String[] str = a.split( "[!.?]+" );
+		for (String tmp : str) System.out.println(tmp);
 	}
 
 	static void task_5 () {
@@ -181,8 +183,8 @@ class My_Class {
 			char[] sym1 = new char[1];
 			str.getChars( i, i + 1, sym, 0 );
 			str.getChars( i + 1, i + 2, sym1, 0 );
-			if (sym[0] == '"' || sym1[0] == '"') continue;
-			if ( sym[0] != sym1[0] || sym[0] != 'a') {
+			if ( sym[0] == '"' || sym1[0] == '"' ) continue;
+			if ( sym[0] != sym1[0] || sym[0] != 'a' ) {
 				return false;
 			}
 		}
@@ -195,7 +197,7 @@ class My_Class {
 		a = a.toLowerCase();
 		String[] str = a.split( " " );
 		for ( int i = 0; i < str.length; i++ ) {
-			if (str[i].length() == 1) continue;
+			if ( str[i].length() == 1 ) continue;
 			if ( repeat_character( str[i] ) ) {
 				str[i] = "argh";
 			}
