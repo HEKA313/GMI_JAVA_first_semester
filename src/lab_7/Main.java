@@ -142,9 +142,33 @@ class My_Class {
 	}
 
 	static void task_4 () {
+		// Привет. Люблю тебя! Грустно? Мне тоже...
+		// Привет Привет привет привет ПрИвЕт. Как КАК КаК кАк кАК?
 		String a = scanner.nextLine();
+		a = a.toLowerCase();
 		String[] str = a.split( "[!.?]+" );
-		for (String tmp : str) System.out.println(tmp);
+		List<String[]> sentences = new ArrayList<>();
+		int max = 0, n = 0, count = 0;
+		for ( String tmp : str ) sentences.add( tmp.split( " " ) );
+		for ( String[] words : sentences ) {
+			for ( String word : words ) {
+				for ( String tmp : words ) {
+					if ( tmp.equals( word ) && !tmp.equals( "" ) ) {
+						n++;
+						break;
+					}
+				}
+			}
+			if ( n > max ) {
+				max = n;
+				n = 0;
+				count = 1;
+			} else if ( n == max ) {
+				n = 0;
+				count++;
+			}
+		}
+		System.out.println( count );
 	}
 
 	static void task_5 () {
