@@ -183,7 +183,7 @@ class My_Class {
 			}
 		}
 		System.out.println( "Отсортированный массив, который указан выше:" );
-		for ( int j : side ) System.out.print( j );
+		for ( int j : side ) System.out.printf( "%d ", j );
 		System.out.println();
 	}
 
@@ -222,27 +222,48 @@ class My_Class {
 		if ( array.length != array[0].length ) arr = matrix_to_square( array );
 		else arr = array;
 		int[] side = side_diagonal( arr );
-		if ( array.length > array[0].length ) {
 
+		for ( int i = 0; i < side.length; i++ ) {
+			int n = 0;
+			for ( int[] ints : array ) {
+				if ( ints[i] < side[i] ) n++;
+			}
+			count[i] = n;
 		}
-//		for (int i = 0; i < array.length; i++) {
-//			int n = 0;
-//			for (int j = 0; j < array[0].length; j++) {
-//				if (array[j][i] > side[j]) {
-//					n++;
-//				}
-//			}
-//			count[i] = n;
-//		}
+
 		System.out.println( "Массив созданный по количеству элементов столбцов, в которых элементы меньше побочной диагонали" );
-		for ( int num : count ) System.out.print( num );
+		for ( int index : count ) System.out.printf( "%d ", index );
 		System.out.println();
+
 		bubble_sort( array, count );
+
 		System.out.println( "Ответ:" );
 		for ( int[] row : array ) {
 			for ( int col : row ) System.out.printf( "%d ", col );
 			System.out.println();
 		}
+
+//		if ( array.length > array[0].length ) {
+//
+//		}
+////		for (int i = 0; i < array.length; i++) {
+////			int n = 0;
+////			for (int j = 0; j < array[0].length; j++) {
+////				if (array[j][i] > side[j]) {
+////					n++;
+////				}
+////			}
+////			count[i] = n;
+////		}
+//		System.out.println( "Массив созданный по количеству элементов столбцов, в которых элементы меньше побочной диагонали" );
+//		for ( int num : count ) System.out.print( num );
+//		System.out.println();
+//		bubble_sort( array, count );
+//		System.out.println( "Ответ:" );
+//		for ( int[] row : array ) {
+//			for ( int col : row ) System.out.printf( "%d ", col );
+//			System.out.println();
+//		}
 	}
 
 	static void task_4 ( int in, int out ) {
