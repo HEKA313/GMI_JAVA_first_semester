@@ -79,24 +79,28 @@ class My_Class {
 		System.out.println( "Вы ввели массив:" );
 		for ( int[] ints : a ) {
 			for ( int j = 0; j < a[0].length; j++ ) {
-				System.out.printf( "%d ", ints[j] );
+				System.out.printf( "%4d", ints[j] );
 			}
 			System.out.print( "\n" );
 		}
 	}
 
 	static void out_recursion ( int[][] a, int row, int col ) {
+		System.out.println("Вы ввели массив:");
 		if ( row == a.length ) {
 		} else if ( col >= a[row].length ) {
 			System.out.println();
 			out_recursion( a, ++row, 0 );
 		} else {
-			System.out.printf( "%d ", a[row][col] );
+			System.out.printf( "%4d", a[row][col] );
 			out_recursion( a, row, ++col );
 		}
 	}
 
 	static boolean prime_number ( int num ) {
+		if ( num == 2 ) return true;
+		if ( num % 2 == 0 ) return false;
+		if ( num < 2 ) return false;
 		for ( int i = 3; i <= num / 2; i += 2 ) if ( num % i == 0 ) return false;
 		return true;
 	}
@@ -110,7 +114,6 @@ class My_Class {
 		if ( in == 1 ) array = in_manually( row, col );
 		else if ( in == 2 ) array = in_random( row, col );
 
-		System.out.println( "Вы ввели массив:" );
 		if ( out == 1 ) out_cycle( array );
 		else if ( out == 2 ) out_recursion( array, 0, 0 );
 
@@ -174,8 +177,8 @@ class My_Class {
 		boolean needIteration = true;
 		if ( side.length <= 1 ) needIteration = false;
 		while ( needIteration ) {
+			needIteration = false;
 			for ( int i = 1; i < side.length; i++ ) {
-				needIteration = false;
 				if ( side[i] > side[i - 1] ) {
 					swap( array, side, i, i - 1 );
 					needIteration = true;
@@ -188,12 +191,13 @@ class My_Class {
 	}
 
 	static void task_1 ( int in, int out ) {
+		//23.	В каждой строке определить наибольшее простое число, если в строке нет простых чисел, выдавать соответствующее сообщение
 		int[][] array = standard_actions( in, out );
 
 		for ( int[] rows : array ) {
 			int max = Integer.MIN_VALUE;
 			for ( int cols : rows ) {
-				if ( prime_number( cols ) && max < cols && cols % 2 != 0 ) max = cols;
+				if ( prime_number( cols ) && max < cols ) max = cols;
 			}
 			if ( max != Integer.MIN_VALUE ) System.out.println( max );
 			else System.out.println( "Простых чисел в строке - нет" );
@@ -201,6 +205,7 @@ class My_Class {
 	}
 
 	static void task_2 ( int in, int out ) {
+		//19.	найти номера строк, в которых на всех нечетных позициях стоят нули;
 		int[][] array = standard_actions( in, out );
 
 		for ( int i = 0; i < array.length; i++ ) {
@@ -216,6 +221,8 @@ class My_Class {
 	}
 
 	static void task_3 ( int in, int out ) {
+		// 3.	Отсортировать столбцы матрицы по убыванию количества элементов меньших элементов побочной диагонали;
+		// ГОВНО СТОРТИРОВКА
 		int[][] array = standard_actions( in, out );
 		int[] count = new int[array.length];
 		int[][] arr;
@@ -239,34 +246,14 @@ class My_Class {
 
 		System.out.println( "Ответ:" );
 		for ( int[] row : array ) {
-			for ( int col : row ) System.out.printf( "%d ", col );
+			for ( int col : row ) System.out.printf( "%4d ", col );
 			System.out.println();
 		}
-
-//		if ( array.length > array[0].length ) {
-//
-//		}
-////		for (int i = 0; i < array.length; i++) {
-////			int n = 0;
-////			for (int j = 0; j < array[0].length; j++) {
-////				if (array[j][i] > side[j]) {
-////					n++;
-////				}
-////			}
-////			count[i] = n;
-////		}
-//		System.out.println( "Массив созданный по количеству элементов столбцов, в которых элементы меньше побочной диагонали" );
-//		for ( int num : count ) System.out.print( num );
-//		System.out.println();
-//		bubble_sort( array, count );
-//		System.out.println( "Ответ:" );
-//		for ( int[] row : array ) {
-//			for ( int col : row ) System.out.printf( "%d ", col );
-//			System.out.println();
-//		}
 	}
 
 	static void task_4 ( int in, int out ) {
+		//28.	Переставить строку и столбец матрицы, на пересечении которых расположен минимальный четный элемент
+		// побочной диагонали. Если на побочной диагонали нет четных элементов, то вывести матрицу в обратном порядке.
 		int[][] array = standard_actions( in, out );
 		int[][] arr;
 		if ( array.length != array[0].length ) arr = matrix_to_square( array );
